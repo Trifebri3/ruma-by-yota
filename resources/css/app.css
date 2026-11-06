@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    --color-ochre-50: #FDFBF7;
+    --color-ochre-100: #F8F2E4;
+    --color-ochre-200: #F1E2C0;
+    --color-ochre-300: #E6CE93;
+    --color-ochre-400: #D8B561;
+    --color-ochre-500: #B88E3E;
+    --color-ochre-600: #9E752D;
+    --color-ochre-700: #7E5923;
+    --color-ochre-800: #654620;
+    --color-ochre-900: #4B3319;
+
+    --color-forest-50: #F1F7F3;
+    --color-forest-100: #DDEEE1;
+    --color-forest-200: #BDDFC3;
+    --color-forest-300: #94C89E;
+    --color-forest-400: #5F9E6C;
+    --color-forest-500: #387D47;
+    --color-forest-600: #296637;
+    --color-forest-700: #1E4D2B;
+    --color-forest-800: #1A3E24;
+    --color-forest-900: #15321E;
+}
+
+/* Custom super seamless white styles */
+body {
+    background-color: #FFFFFF;
+    color: #111827;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #FAFAFA;
+}
+::-webkit-scrollbar-thumb {
+    background: #E2E8F0;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #CBD5E1;
+}
+
+/* Clean cards and subtle elevation */
+.ruma-card {
+    background: #FFFFFF;
+    border: 1px solid #F1F5F9;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.ruma-card-hover {
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ruma-card-hover:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -4px rgba(184, 142, 62, 0.08), 0 4px 10px -2px rgba(0, 0, 0, 0.03);
+    border-color: #F1E2C0;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "RUMA — Digital Empowerment Platform",
+  "short_name": "RUMA",
+  "description": "Platform pendampingan digital petani dan kelompok usaha berbasis hasil bumi SiYota.org",
+  "start_url": "/group/dashboard",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#B88E3E",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
