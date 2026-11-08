@@ -3,6 +3,7 @@
 use App\Http\Controllers\Public\BusinessController;
 use App\Http\Controllers\Public\GroupController;
 use App\Http\Controllers\Public\HomeController;
+use App\Http\Controllers\Public\PublicReportController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,7 @@ Route::get('/usaha-binaan/{slug}', [BusinessController::class, 'show'])->name('p
 Route::get('/daftar-kelompok', [RegistrationController::class, 'index'])->name('register.group');
 Route::post('/daftar-kelompok', [RegistrationController::class, 'store'])->name('register.group.store');
 Route::get('/pendaftaran-berhasil', [RegistrationController::class, 'success'])->name('register.success');
+
+// Laporan Progress Harian via Tautan Publik (Tanpa Login)
+Route::get('/laporan/{token}', [PublicReportController::class, 'show'])->name('public.report.show');
+Route::post('/laporan/{token}', [PublicReportController::class, 'submit'])->name('public.report.submit');

@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Commodity;
+use App\Models\DailyProgressReport;
+use App\Models\DailyReportLink;
 use App\Models\FinancialRecord;
 use App\Models\Group;
 use App\Models\Land;
@@ -725,6 +727,52 @@ class RumaDatabaseSeeder extends Seeder
             'message_preview' => '📝 RUMA: Kang Rian telah meninjau tugas Foto Produk Cabai. Status: Perlu Revisi sedikit pada penambahan info berat bersih.',
             'status' => 'sent',
             'sent_at' => Carbon::now()->subDay(),
+        ]);
+
+        // 15. Daily Report Links & Sample Reports
+        $linkKwt = DailyReportLink::create([
+            'group_id' => $kwt->id,
+            'title' => 'Laporan Harian — KWT Sumber Rejeki',
+            'description' => 'Laporkan aktivitas perawatan kebun cabai rawit, jadwal penyiraman, dan pemupukan organik harian.',
+            'token' => 'kwt-sumber-rejeki-harian-2026',
+            'daily_limit' => 2,
+            'is_active' => true,
+            'created_by' => $admin->id,
+        ]);
+
+        $linkMukti = DailyReportLink::create([
+            'group_id' => $arenMakmur->id,
+            'title' => 'Laporan Harian Sadapan Nira Aren — Kelompok Aren Makmur',
+            'description' => 'Unggah catatan hasil sadapan nira aren harian, kondisi cuaca, dan proses pemanasan nira.',
+            'token' => 'aren-makmur-harian-2026',
+            'daily_limit' => 1,
+            'is_active' => true,
+            'created_by' => $admin->id,
+        ]);
+
+        DailyProgressReport::create([
+            'daily_report_link_id' => $linkKwt->id,
+            'group_id' => $kwt->id,
+            'user_id' => $ibuSiti->id,
+            'reporter_name' => 'Siti Khodijah (Ketua KWT)',
+            'report_date' => Carbon::now('Asia/Jakarta')->toDateString(),
+            'title' => 'Penyiraman dan Pengecekan Hama Daun Cabai Blok A',
+            'description' => 'Pagi hari pukul 07.30 telah dilakukan penyiraman rutin di petak lahan cabai rawit merah. Daun cabai tampak segar, tunas baru mulai tumbuh seragam, dan tidak ditemukan hama kutu kebul.',
+            'photo_url' => 'https://images.unsplash.com/photo-1592417817098-8f3d6ef23963?auto=format&fit=crop&w=800&q=80',
+            'status' => 'reviewed',
+            'admin_notes' => 'Bagus sekali Bu Siti, pastikan drainase bedengan tetap terjaga jika sore ini turun hujan lebat.',
+        ]);
+
+        DailyProgressReport::create([
+            'daily_report_link_id' => $linkMukti->id,
+            'group_id' => $arenMakmur->id,
+            'reporter_name' => 'Pak Dede Permana',
+            'report_date' => Carbon::now('Asia/Jakarta')->subDay()->toDateString(),
+            'title' => 'Penyadapan 12 Pohon Aren Blok Cibeureum',
+            'description' => 'Hasil sadapan nira pagi ini mencapai 45 liter dari 12 pohon aren produktif. Nira dalam kondisi segar dan manis, langsung dimasak untuk produksi gula aren cetak dan gula semut.',
+            'photo_url' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
+            'status' => 'approved',
+            'admin_notes' => 'Kualitas nira sangat baik, rendemen gula mencapai standar prima.',
         ]);
     }
 }

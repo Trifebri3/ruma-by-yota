@@ -37,6 +37,16 @@ Route::get('/beranda', function () {
     return redirect()->route('public.home');
 })->name('home');
 
+// PWA Routes
+Route::get('/manifest.json', function () {
+    $content = json_decode(file_get_contents(public_path('manifest.json')), true);
+
+    return response()->json($content);
+});
+Route::get('/offline.html', function () {
+    return response(file_get_contents(public_path('offline.html')));
+});
+
 // Modular Route Files
 require __DIR__.'/public.php';
 require __DIR__.'/admin.php';

@@ -14,8 +14,11 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#B88E3E">
     <link rel="icon" type="image/png" href="{{ asset('logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('logo.png') }}">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="RUMA">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
     <!-- Vite Tailwind -->
@@ -94,6 +97,25 @@
             @yield('content')
         </main>
 
+        <!-- In-App PWA Install Banner -->
+        <div id="pwaInstallBanner" class="hidden fixed bottom-20 left-4 right-4 max-w-[448px] mx-auto z-50 p-3 bg-slate-900 text-white rounded-2xl shadow-2xl flex items-center justify-between gap-3 border border-slate-800">
+            <div class="flex items-center gap-2.5">
+                <img src="{{ asset('logo.png') }}" alt="RUMA" class="w-8 h-8 rounded-lg object-contain bg-white p-0.5">
+                <div>
+                    <div class="text-xs font-black">Pasang Aplikasi RUMA</div>
+                    <div class="text-[10px] text-slate-300">Buka langsung di layar utama HP</div>
+                </div>
+            </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button id="pwaInstallBtn" class="px-3 py-1.5 rounded-xl bg-[#B88E3E] hover:bg-[#9E752D] text-white text-[11px] font-black transition-colors">
+                    Pasang
+                </button>
+                <button id="pwaDismissBtn" class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center text-xs">
+                    ✕
+                </button>
+            </div>
+        </div>
+
         <!-- Bottom Navigation Bar (5 Items) -->
         <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 shadow-lg">
             <div class="max-w-[480px] mx-auto px-2 flex items-center justify-around h-16">
@@ -131,6 +153,50 @@
     </div>
 
     @stack('scripts')
+
+    <!-- PWA Service Worker & Install Script -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('RUMA PWA Service Worker Registered', reg))
+                    .catch(err => console.log('SW Registration error:', err));
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installBanner = document.getElementById('pwaInstallBanner');
+        const installBtn = document.getElementById('pwaInstallBtn');
+        const dismissBtn = document.getElementById('pwaDismissBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Check if user dismissed recently
+            if (!localStorage.getItem('ruma_pwa_dismissed')) {
+                installBanner.classList.remove('hidden');
+                installBanner.classList.add('flex');
+            }
+        });
+
+        if (installBtn) {
+            installBtn.addEventListener('click', async () => {
+                if (!deferredPrompt) return;
+                installBanner.classList.add('hidden');
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                deferredPrompt = null;
+            });
+        }
+
+        if (dismissBtn) {
+            dismissBtn.addEventListener('click', () => {
+                installBanner.classList.add('hidden');
+                localStorage.setItem('ruma_pwa_dismissed', '1');
+            });
+        }
+    </script>
 </body>
 </html>
 

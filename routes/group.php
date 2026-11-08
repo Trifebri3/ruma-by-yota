@@ -8,6 +8,7 @@ use App\Http\Controllers\Group\LandController;
 use App\Http\Controllers\Group\LearningController;
 use App\Http\Controllers\Group\MarketingController;
 use App\Http\Controllers\Group\ProductController;
+use App\Http\Controllers\Group\ProgressReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,7 +43,11 @@ Route::prefix('group')->middleware(['role:user,admin'])->name('group.')->group(f
     Route::get('/marketing', [MarketingController::class, 'index'])->name('marketing.index');
     Route::post('/marketing/kumpulkan', [MarketingController::class, 'submit'])->name('marketing.submit');
 
-    // 5. Akun & Profil Kelompok
+    // 5. Laporan Progress Harian Kelompok
+    Route::get('/progress', [ProgressReportController::class, 'index'])->name('progress.index');
+    Route::post('/progress', [ProgressReportController::class, 'store'])->name('progress.store');
+
+    // 6. Akun & Profil Kelompok
     Route::get('/akun', [AccountController::class, 'index'])->name('account.index');
     Route::post('/akun/update', [AccountController::class, 'update'])->name('account.update');
 });

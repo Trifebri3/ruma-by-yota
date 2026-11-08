@@ -88,6 +88,16 @@ class Group extends Model
         return $this->hasMany(MentoringNote::class);
     }
 
+    public function dailyReportLinks(): HasMany
+    {
+        return $this->hasMany(DailyReportLink::class);
+    }
+
+    public function dailyProgressReports(): HasMany
+    {
+        return $this->hasMany(DailyProgressReport::class);
+    }
+
     public function getTotalBalanceAttribute(): float
     {
         $income = $this->financialRecords()->where('type', 'masuk')->sum('amount');

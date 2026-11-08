@@ -24,6 +24,20 @@
         </div>
     </div>
 
+    <!-- Laporan Progress Harian Shortcut -->
+    <a href="{{ route('group.progress.index') }}" class="bg-gradient-to-r from-[#FDFBF7] to-[#F8F2E4] rounded-2xl p-3.5 border border-[#B88E3E]/30 shadow-xs flex items-center justify-between hover:border-[#B88E3E] transition-all">
+        <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#B88E3E] text-white flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+            </div>
+            <div>
+                <span class="text-xs font-black text-slate-900 block">Laporan Progress Harian</span>
+                <span class="text-[10px] text-slate-500 font-medium">Kirim laporan atau bagikan tautan cepat tanpa login &rarr;</span>
+            </div>
+        </div>
+        <svg class="w-4 h-4 text-[#B88E3E]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+    </a>
+
     <!-- 1. APA YANG HARUS SAYA KERJAKAN? -->
     <div class="space-y-2">
         <div class="flex items-center justify-between">

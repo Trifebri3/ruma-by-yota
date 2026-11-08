@@ -1,19 +1,60 @@
 {
-  "name": "RUMA — Digital Empowerment Platform",
+  "name": "RUMA — Ruang Usaha Masyarakat Alam",
   "short_name": "RUMA",
-  "description": "Platform pendampingan digital petani dan kelompok usaha berbasis hasil bumi SiYota.org",
+  "description": "Platform pendampingan usaha berbasis hasil bumi dan sumber daya lokal oleh SiYota.org",
   "start_url": "/group/dashboard",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#FFFFFF",
   "theme_color": "#B88E3E",
+  "lang": "id",
+  "categories": [
+    "business",
+    "productivity",
+    "agriculture"
+  ],
   "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
     {
       "src": "/icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Laporan Progress",
+      "short_name": "Laporan",
+      "description": "Kirim laporan progress harian kelompok",
+      "url": "/group/progress",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Catat Kas",
+      "short_name": "Keuangan",
+      "description": "Pencatatan kas masuk dan keluar",
+      "url": "/group/keuangan",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Peta Lahan",
+      "short_name": "Peta",
+      "description": "Peta polygon sebaran lahan",
+      "url": "/#peta-lahan",
+      "icons": [{ "src": "/logo.png", "sizes": "192x192" }]
     }
   ]
 }

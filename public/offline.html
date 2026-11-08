@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Koneksi Terputus | RUMA SiYota</title>
+    <link rel="icon" type="image/png" href="/logo.png">
+    <meta name="theme-color" content="#B88E3E">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #FFFFFF;
+            color: #1E293B;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .card {
+            max-width: 400px;
+            width: 100%;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            margin: 0 auto 1.25rem;
+            display: block;
+        }
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            background-color: #FEF3C7;
+            color: #92400E;
+            margin-bottom: 0.75rem;
+        }
+        h1 {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #0F172A;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+        p {
+            font-size: 0.8125rem;
+            color: #64748B;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background-color: #B88E3E;
+            color: #FFFFFF;
+            font-size: 0.875rem;
+            font-weight: 800;
+            border-radius: 16px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn:hover { background-color: #9E752D; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="/logo.png" alt="RUMA SiYota" class="logo">
+        <span class="badge">Mode Offline</span>
+        <h1>Koneksi Internet Terputus</h1>
+        <p>
+            Anda sedang tidak terhubung ke jaringan internet. Periksa koneksi Wi-Fi atau paket data seluler Anda, lalu muat ulang halaman.
+        </p>
+        <button class="btn" onclick="window.location.reload()">
+            Coba Muat Ulang Halaman
+        </button>
+    </div>
+</body>
+</html>
+

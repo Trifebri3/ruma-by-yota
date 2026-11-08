@@ -19,6 +19,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role', // user, group_admin, group_member, fasil, facilitator, admin, admin_siyota, super_admin
+        'is_active',
         'position_title',
         'phone',
         'avatar_url',
@@ -27,6 +28,7 @@ class User extends Authenticatable
 
     protected $attributes = [
         'role' => 'user',
+        'is_active' => true,
     ];
 
     protected $hidden = [
@@ -39,6 +41,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
         ];
     }
 
@@ -91,8 +94,13 @@ class User extends Authenticatable
         return in_array($this->role, ['group_admin', 'user', 'super_admin']);
     }
 
+    public function isGroupMember(): bool
+    {
+        return $this->role === 'group_member';
+    }
+
     /**
-     * Get clean 3-role label: USER, FASIL, or ADMIN
+     * Get clean role label
      */
     public function getCleanRoleLabelAttribute(): string
     {
@@ -101,6 +109,9 @@ class User extends Authenticatable
         }
         if ($this->isFasil()) {
             return 'FASIL';
+        }
+        if ($this->role === 'group_member') {
+            return 'ANGGOTA';
         }
 
         return 'USER';
